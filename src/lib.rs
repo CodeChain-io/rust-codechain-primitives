@@ -14,18 +14,12 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-extern crate ethcore_bytes as ebytes;
 extern crate ethereum_types;
 
 mod hash;
 
 pub use crate::hash::{H128, H160, H256, H264, H512, H520};
-pub use ebytes::Bytes;
 pub use ethereum_types::U256;
-
-pub mod bytes {
-    pub use ebytes::ToPretty;
-}
 
 pub fn u256_from_u128(u: u128) -> U256 {
     let mut arr: [u64; 4] = [0, 0, 0, 0];
@@ -42,6 +36,8 @@ pub fn remove_0x_prefix(s: &str) -> &str {
         s
     }
 }
+
+pub type Bytes = Vec<u8>;
 
 #[cfg(test)]
 mod tests {
