@@ -21,7 +21,7 @@ mod hash;
 
 pub use crate::hash::{H128, H160, H256, H264, H512, H520};
 pub use ebytes::Bytes;
-pub use ethereum_types::{clean_0x, U256};
+pub use ethereum_types::U256;
 
 pub mod bytes {
     pub use ebytes::ToPretty;
@@ -32,6 +32,15 @@ pub fn u256_from_u128(u: u128) -> U256 {
     arr[0] = (u & u128::from(std::u64::MAX)) as u64;
     arr[1] = (u >> 64) as u64;
     U256(arr)
+}
+
+/// Return `s` without the `0x` at the beginning of it, if any.
+pub fn remove_0x_prefix(s: &str) -> &str {
+    if s.starts_with("0x") {
+        &s[2..]
+    } else {
+        s
+    }
 }
 
 #[cfg(test)]
