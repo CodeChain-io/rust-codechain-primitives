@@ -75,4 +75,28 @@ mod tests {
     fn u128_max() {
         assert_eq!(u256_from_u128(std::u128::MAX), U128::max_value().into());
     }
+
+    #[test]
+    fn remove_0x_prefix_returns_the_same_if_it_does_not_start_with_0x() {
+        const S: &str = "abcdef";
+        assert_eq!("abcdef", remove_0x_prefix(S));
+    }
+
+    #[test]
+    fn remove_0x_prefix_returns_the_same_if_it_starts_with_0() {
+        const S: &str = "0abcdef";
+        assert_eq!("0abcdef", remove_0x_prefix(S));
+    }
+
+    #[test]
+    fn remove_0x_prefix_works() {
+        const S: &str = "0xabcdef";
+        assert_eq!("abcdef", remove_0x_prefix(S));
+    }
+
+    #[test]
+    fn remove_0x_prefix_returns_empty_string_if_input_is_0x() {
+        const S: &str = "0x";
+        assert_eq!("", remove_0x_prefix(S));
+    }
 }
