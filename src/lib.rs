@@ -21,6 +21,10 @@ mod hash;
 pub use crate::hash::{H128, H160, H256, H264, H512, H520};
 pub use ethereum_types::U256;
 
+pub fn h128_from_u128(u: u128) -> H128 {
+    H128(u.to_be_bytes())
+}
+
 pub fn u256_from_u128(u: u128) -> U256 {
     let mut arr: [u64; 4] = [0, 0, 0, 0];
     arr[0] = (u & u128::from(std::u64::MAX)) as u64;
@@ -38,6 +42,46 @@ pub fn remove_0x_prefix(s: &str) -> &str {
 }
 
 pub type Bytes = Vec<u8>;
+
+#[cfg(test)]
+mod tests_h128_from_u128 {
+    use super::*;
+    use ethereum_types::U128;
+
+    #[test]
+    fn zero() {
+        assert_eq!(H128::zero(), h128_from_u128(0));
+    }
+
+    #[test]
+    fn one() {
+        assert_eq!(H128::from(1), h128_from_u128(1));
+    }
+
+    #[test]
+    fn u64_max_plus_1() {
+        assert_eq!(
+            H128::from(U128::from(std::u64::MAX) + 1.into()),
+            h128_from_u128(std::u64::MAX as u128 + 1)
+        );
+    }
+
+    #[test]
+    fn max_minus_1() {
+        assert_eq!(
+            H128::from(U128::max_value() - 1.into()),
+            h128_from_u128(std::u128::MAX - 1)
+        );
+    }
+
+    #[test]
+    fn u128_max() {
+        assert_eq!(
+            H128::from(U128::max_value()),
+            h128_from_u128(std::u128::MAX)
+        );
+    }
+}
 
 #[cfg(test)]
 mod tests {
