@@ -61,15 +61,15 @@ mod tests_h128_from_u128 {
     #[test]
     fn u64_max_plus_1() {
         assert_eq!(
-            H128::from(U128::from(std::u64::MAX) + 1.into()),
-            h128_from_u128(std::u64::MAX as u128 + 1)
+            H128::from(U128::from(std::u64::MAX) + 1),
+            h128_from_u128(u128::from(std::u64::MAX) + 1)
         );
     }
 
     #[test]
     fn max_minus_1() {
         assert_eq!(
-            H128::from(U128::max_value() - 1.into()),
+            H128::from(U128::max_value() - 1),
             h128_from_u128(std::u128::MAX - 1)
         );
     }
@@ -101,13 +101,13 @@ mod tests {
 
     #[test]
     fn u64_max_plus_1() {
-        let u128: U128 = U128::from(std::u64::MAX) + 1.into();
+        let u128: U128 = U128::from(std::u64::MAX) + 1;
         assert_eq!(u256_from_u128(u128::from(std::u64::MAX) + 1), u128.into());
     }
 
     #[test]
     fn u128_max_minus_1() {
-        let u128: U128 = U128::max_value() - 1.into();
+        let u128: U128 = U128::max_value() - 1;
         assert_eq!(u256_from_u128(std::u128::MAX - 1), u128.into());
     }
 
