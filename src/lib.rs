@@ -60,26 +60,17 @@ mod tests_h128_from_u128 {
 
     #[test]
     fn u64_max_plus_1() {
-        assert_eq!(
-            H128::from(U128::from(std::u64::MAX) + 1),
-            h128_from_u128(u128::from(std::u64::MAX) + 1)
-        );
+        assert_eq!(H128::from(U128::from(std::u64::MAX) + 1), h128_from_u128(u128::from(std::u64::MAX) + 1));
     }
 
     #[test]
     fn max_minus_1() {
-        assert_eq!(
-            H128::from(U128::max_value() - 1),
-            h128_from_u128(std::u128::MAX - 1)
-        );
+        assert_eq!(H128::from(U128::max_value() - 1), h128_from_u128(std::u128::MAX - 1));
     }
 
     #[test]
     fn u128_max() {
-        assert_eq!(
-            H128::from(U128::max_value()),
-            h128_from_u128(std::u128::MAX)
-        );
+        assert_eq!(H128::from(U128::max_value()), h128_from_u128(std::u128::MAX));
     }
 }
 
