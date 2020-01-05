@@ -19,7 +19,7 @@ jobs:
           profile: minimal
       - run: cargo test --verbose --all
   staic-analysis:
-    name: staic-analysis
+    name: static-analysis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
