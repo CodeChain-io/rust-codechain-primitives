@@ -74,9 +74,8 @@ mod tests_h128_from_u128 {
 
 #[cfg(test)]
 mod tests {
-    use ethereum_types::U128;
-
     use super::*;
+    use ethereum_types::U128;
 
     #[test]
     fn u128_zero() {
