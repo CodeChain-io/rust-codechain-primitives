@@ -44,7 +44,7 @@ pub type Bytes = Vec<u8>;
 #[cfg(test)]
 mod tests_h128_from_u128 {
     use super::*;
-    use ethereum_types::U128;
+    use ethereum_types::{BigEndianHash, U128};
 
     #[test]
     fn zero() {
@@ -53,22 +53,22 @@ mod tests_h128_from_u128 {
 
     #[test]
     fn one() {
-        assert_eq!(H128::from(1), h128_from_u128(1));
+        assert_eq!(H128::from_uint(&U128::from(1)), h128_from_u128(1));
     }
 
     #[test]
     fn u64_max_plus_1() {
-        assert_eq!(H128::from(U128::from(std::u64::MAX) + 1), h128_from_u128(u128::from(std::u64::MAX) + 1));
+        assert_eq!(H128::from_uint(&(U128::from(std::u64::MAX) + 1)), h128_from_u128(u128::from(std::u64::MAX) + 1));
     }
 
     #[test]
     fn max_minus_1() {
-        assert_eq!(H128::from(U128::max_value() - 1), h128_from_u128(std::u128::MAX - 1));
+        assert_eq!(H128::from_uint(&(U128::max_value() - 1)), h128_from_u128(std::u128::MAX - 1));
     }
 
     #[test]
     fn u128_max() {
-        assert_eq!(H128::from(U128::max_value()), h128_from_u128(std::u128::MAX));
+        assert_eq!(H128::from_uint(&U128::max_value()), h128_from_u128(std::u128::MAX));
     }
 }
 

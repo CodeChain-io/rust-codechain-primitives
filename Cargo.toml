@@ -8,4 +8,4 @@ readme = "README.md"
 repository = "https://github.com/CodeChain-io/rust-codechain-primitives"
 
 [dependencies]
-ethereum-types = "0.4"
+ethereum-types = { version = "0.9", features = ["serialize"] }
