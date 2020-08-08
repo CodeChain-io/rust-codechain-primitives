@@ -17,7 +17,7 @@
 mod hash;
 
 pub use crate::hash::{H128, H160, H256, H264, H512, H520};
-pub use ethereum_types::U256;
+pub use ethereum_types::{BigEndianHash, U256};
 
 pub fn h128_from_u128(u: u128) -> H128 {
     H128(u.to_be_bytes())
